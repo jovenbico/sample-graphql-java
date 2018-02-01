@@ -1,0 +1,19 @@
+
+type Link {
+  url: String!
+  description: String!
+  foo: Foo
+}
+
+type Foo {
+  name: String!
+}
+
+type Query {
+  allLinks: [Link]
+  foo: Foo
+}
+
+schema {
+  query: Query
+}
