@@ -1,0 +1,20 @@
+
+type Flight {
+  id: Long!
+  number: String!
+  ulds: [Uld]
+}
+
+type Uld {
+  id: Long!
+  number: String!
+}
+
+type FlightQuery {
+  allFlights: [Flight]
+  flightByNumber(flightNumber: String!): Flight
+}
+
+schema {
+  query: FlightQuery
+}

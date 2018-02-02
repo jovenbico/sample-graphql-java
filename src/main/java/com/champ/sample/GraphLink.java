@@ -1,6 +1,7 @@
 package com.champ.sample;
 
 import java.io.File;
+import java.util.Map;
 
 import com.champ.sample.graph.query.FooFetcher;
 import com.champ.sample.graph.query.LinkFetcher;
@@ -25,7 +26,8 @@ public class GraphLink {
 		TypeDefinitionRegistry typeDefinitionRegistry = schemaParser.parse(schema);
 
 		RuntimeWiring runtimeWiring = RuntimeWiring.newRuntimeWiring() //
-				.type("Query", typeWiring -> typeWiring.dataFetcher("allLinks", new LinkFetcher(linkRepository))
+				.type("Query", typeWiring -> typeWiring//
+						.dataFetcher("allLinks", new LinkFetcher(linkRepository))//
 						.dataFetcher("foo", new FooFetcher()) //
 				) //
 				.type("Link", typeWiring -> typeWiring.dataFetcher("foo", new FooFetcher())) //
@@ -40,7 +42,11 @@ public class GraphLink {
 		// = build.execute("{allLinks{url foo{name}}}");
 		// = build.execute("{foo{name}}");
 
+		System.out.println(executionResult.toSpecification());
 		System.out.println(executionResult.getData().toString());
+
+		Map<String, Object> toSpecificationResult = executionResult.toSpecification();
+		System.out.println(toSpecificationResult.get("data").toString());
 
 		System.out.println(">>>");
 	}
