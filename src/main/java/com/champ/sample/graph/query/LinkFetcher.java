@@ -1,9 +1,7 @@
 package com.champ.sample.graph.query;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-import com.champ.sample.domain.Foo;
 import com.champ.sample.domain.Link;
 import com.champ.sample.repository.LinkRepository;
 
@@ -20,11 +18,7 @@ public class LinkFetcher implements DataFetcher<List<Link>> {
 
 	@Override
 	public List<Link> get(DataFetchingEnvironment environment) {
-		return linkRepository.getAllLinks().stream().filter(link -> {
-			link.setFoo(new Foo("xyz"));
-			return true;
-		}).collect(Collectors.toList());
-		// return linkRepository.getAllLinks();
+		return linkRepository.getAllLinks();
 	}
 
 }

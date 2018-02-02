@@ -28,14 +28,7 @@ public class GraphLink {
 				.type("Query", typeWiring -> typeWiring.dataFetcher("allLinks", new LinkFetcher(linkRepository))
 						.dataFetcher("foo", new FooFetcher()) //
 				) //
-					// .type("Foo", typeWiring -> typeWiring.typeResolver(new FooResolver())) //
-					// .wiringFactory(new WiringFactory() {
-					// @Override
-					// public DataFetcher<String> getDefaultDataFetcher(FieldWiringEnvironment
-					// environment) {
-					// return new DefaultDataFetcher();
-					// }
-					// })//
+				.type("Link", typeWiring -> typeWiring.dataFetcher("foo", new FooFetcher())) //
 				.build();
 
 		SchemaGenerator schemaGenerator = new SchemaGenerator();

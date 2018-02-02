@@ -12,7 +12,7 @@ public class FooFetcher implements DataFetcher<Foo> {
 	public Foo get(DataFetchingEnvironment environment) {
 
 		Link link = environment.getSource();
-		System.out.println(">> it happens >> " + link);
+		System.out.println(">> it happens >> " + link.getUrl());
 
 		return new Foo("foo-name");
 	}
