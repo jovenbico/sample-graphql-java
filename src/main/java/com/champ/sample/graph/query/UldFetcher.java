@@ -20,8 +20,6 @@ public class UldFetcher implements DataFetcher<List<Uld>> {
 
 	@Override
 	public List<Uld> get(DataFetchingEnvironment environment) {
-		System.out.println(">>> ulds");
-
 		Flight flight = environment.getSource();
 
 		List<Uld> ulds = uldRepository.readAll().stream()//

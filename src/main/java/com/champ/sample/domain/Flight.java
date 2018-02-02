@@ -1,5 +1,8 @@
 package com.champ.sample.domain;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 public class Flight extends BaseDomain {
 
 	private static final long serialVersionUID = -4420058112985016221L;
@@ -35,27 +38,19 @@ public class Flight extends BaseDomain {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
+		return new HashCodeBuilder(17, 37)//
+				.append(id)//
+				.append(number)//
+				.hashCode();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Flight other = (Flight) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
+		Flight rhs = (Flight) obj;
+		return new EqualsBuilder().appendSuper(super.equals(obj))//
+				.append(id, rhs.id)//
+				.append(number, rhs.number)//
+				.isEquals();
 	}
 
 }

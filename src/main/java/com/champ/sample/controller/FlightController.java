@@ -81,11 +81,11 @@ public class FlightController {
 	public ResponseEntity<LinkedHashMap<String, Object>> flightGraph(//
 			@RequestParam String query//
 	) {
-		LOG.info(">>> flight query request >>> {}", query);
+		LOG.trace(">>> flight query request >>> {}", query);
 
 		GraphQL build = GraphQL.newGraphQL(GRAPHQL_SCHEMA).build();
 		ExecutionResult executionResult = build.execute(query);
-		LOG.info(">>> flight query graph");
+		LOG.trace(">>> flight query graph");
 
 		LinkedHashMap<String, Object> resource = executionResult.getData();
 		return ResponseEntity.ok(resource);
